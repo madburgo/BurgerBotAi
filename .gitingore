@@ -1,0 +1,37 @@
+# 🔥 Cartella sessione WhatsApp (MAI caricarla)
+session/
+auth/
+
+# 🔥 Moduli Node
+node_modules/
+
+# 🔥 File sensibili
+memory.json
+config.local.js
+
+# 🔥 Log vari
+*.log
+logs/
+debug.log
+
+# 🔥 Cache e build
+.cache/
+dist/
+build/
+
+# 🔥 Docker
+docker-compose.yml
+Dockerfile.local
+
+# 🔥 Sistema operativo
+.DS_Store
+Thumbs.db
+
+# 🔥 Editor
+.vscode/
+.idea/
+
+# 🔥 Ambiente
+.env
+.env.local
+.env.production
