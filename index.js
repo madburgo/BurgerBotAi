@@ -10,7 +10,7 @@ import makeWASocket, {
             import { isAdmin, isOwner, reply, log } from "./utils.js"
 
             async function startBot() {
-                const { state, saveCreds } = await useMultiFileAuthState("./session")
+                const { state, saveCreds } = await useMultiFileAuthState("./auth")
 
                     const sock = makeWASocket({
                             auth: state,
