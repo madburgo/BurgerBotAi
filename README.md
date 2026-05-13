@@ -21,8 +21,8 @@ BurgerAI è un bot WhatsApp avanzato basato su Baileys, progettato per offrire a
 📦 Installazione locale
 
 1️⃣ Clona il repository
-git clone https://github.com/TUO-USERNAME/BurgerAI.git
-cd BurgerAI
+git clone https://github.com/madburgo/BurgerBotAI.git
+cd BurgerBotAI
 
 2️⃣ Installa le dipendenze
 npm install
