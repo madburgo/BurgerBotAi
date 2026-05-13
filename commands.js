@@ -1,6 +1,5 @@
 import { generateMenu } from "./menu.js"
 import { createCustomCommand, runCustomCommand } from "./customCommands.js"
-import { loadCommands } from "./memory.js"
 import { generateErrorMessage } from "./ai.js"
 import { executeActions } from "./actions.js"
 import { detectActions } from "./parser.js"
