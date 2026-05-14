@@ -1,20 +1,20 @@
 {
       "name": "burgerai",
-        "version": "1.0.0",
-          "description": "Bot WhatsApp Baileys con AI e moderazione",
-            "main": "index.js",
-              "type": "module",
-                "scripts": {
-                    "start": "node index.js"
-                      },
-                        "dependencies": {
-                            "@whiskeysockets/baileys": "latest",
-                                "@hapi/boom": "latest",
-                                    "qrcode-terminal": "latest",
-                                        "node-fetch": "3.3.2",
-                                            "axios": "latest"
-                                              },
-                                                "engines": {
-                                                    "node": ">=18.0.0"
-                                                      }
-                                                      }
+      "version": "1.0.0",
+      "description": "Bot WhatsApp Baileys con AI e moderazione",
+      "main": "index.js",
+      "type": "module",
+      "scripts": {
+            "start": "node index.js"
+      },
+      "dependencies": {
+            "@hapi/boom": "latest",
+            "@whiskeysockets/baileys": "latest",
+            "axios": "latest",
+            "node-fetch": "3.3.2",
+            "qrcode-terminal": "^0.12.0"
+      },
+      "engines": {
+            "node": ">=18.0.0"
+      }
+}
