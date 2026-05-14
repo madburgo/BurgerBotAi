@@ -32,26 +32,6 @@ npm start
 
 ---
 
-🐳 Deploy con Docker
-
-Build
-docker build -t burgerai .
-
-Run
-docker run -it --restart=always burgerai .
-
----
-
-☁️ Deploy su Koyeb
-
-1. Carica il progetto su GitHub  
-2. Vai su Koyeb → Create App  
-3. Seleziona il repository  
-4. Koyeb rileva il Dockerfile  
-5. Avvia il bot
-
----
-
 🧠 Struttura del progetto
 
 BurgerAI/
