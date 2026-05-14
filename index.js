@@ -32,7 +32,7 @@ import makeWASocket, {
 
                                 const sock = makeWASocket({
                                         auth: state,
-                                                        browser: ["Ubuntu", "Chrome (Linux)", "Chrome", "2.0.0"]
+                                                        browser: ["Ubuntu", "Chrome", "2.0.0"]
                                                             })
 
                                                                 sock.ev.on("creds.update", saveCreds)
