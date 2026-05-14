@@ -1,52 +1,58 @@
+import fs from "fs"
 import makeWASocket, {
-        DisconnectReason,
-            useMultiFileAuthState
-            } from "@whiskeysockets/baileys"
+    DisconnectReason,
+        useMultiFileAuthState
+        } from "@whiskeysockets/baileys"
 
-            import qrcode from "qrcode-terminal"
-            import { Boom } from "@hapi/boom"
-            import { loadMemory, saveMemory, getRole, setCapo } from "./memory.js"
-            import { handleCommand } from "./commands.js"
-            import { askBurgerAI } from "./ai.js"
-            import { isAdmin, isOwner, reply, log } from "./utils.js"
+        import qrcode from "qrcode-terminal"
+        import { loadMemory, saveMemory, getRole, setCapo } from "./memory.js"
+        import { handleCommand } from "./commands.js"
+        import { askBurgerAI } from "./ai.js"
+        import { isAdmin, isOwner, reply, log } from "./utils.js"
 
-            // Variabile globale per salvare il QR ASCII
-            let lastQR = "QR non ancora generato."
-
-            // Funzione per far leggere il QR al server Express
-            export function getLastQR() {
-                return lastQR
+        // ⭐ CANCELLA AUTOMATICAMENTE LA CARTELLA AUTH
+        if (fs.existsSync("./auth")) {
+            fs.rmSync("./auth", { recursive: true, force: true })
+                console.log("Cartella auth rimossa automaticamente.")
                 }
 
-                // Funzione principale del bot
-                export async function startBot() {
-                    console.log("Avvio del bot WhatsApp...")
+                // Variabile globale per salvare il QR ASCII
+                let lastQR = "QR non ancora generato."
 
-                        const { state, saveCreds } = await useMultiFileAuthState("./auth")
+                // Funzione per far leggere il QR al server Express
+                export function getLastQR() {
+                    return lastQR
+                    }
 
-                            const sock = makeWASocket({
-                                    auth: state,
-                                            printQRInTerminal: false,
-                                                    browser: ["Chrome (Linux)", "Chrome", "1.0"]
-                                                        })
+                    // Funzione principale del bot
+                    export async function startBot() {
+                        console.log("Avvio del bot WhatsApp...")
 
-                                                            sock.ev.on("creds.update", saveCreds)
+                            const { state, saveCreds } = await useMultiFileAuthState("./auth")
 
-                                                                // QR + riconnessione
-                                                                    sock.ev.on("connection.update", (update) => {
-                                                                            const { connection, lastDisconnect, qr } = update
+                                const sock = makeWASocket({
+                                        auth: state,
+                                                printQRInTerminal: false,
+                                                        browser: ["Chrome (Linux)", "Chrome", "1.0"]
+                                                            })
 
-                                                                                    if (qr) {
-                                                                                                console.log("QR aggiornato! Vai su /qr per vederlo.")
+                                                                sock.ev.on("creds.update", saveCreds)
 
-                                                                                                            qrcode.generate(qr, { small: true }, (ascii) => {
-                                                                                                                            lastQR = ascii
-                                                                                                                                        })
-                                                                                                                                                }
+                                                                    // QR + riconnessione
+                                                                        sock.ev.on("connection.update", (update) => {
+                                                                                const { connection, lastDisconnect, qr } = update
 
-                                                                                                                                                        if (connection === "close") {
-                                                                                                                                                                    const shouldReconnect =
-                                                                                                                                                                                    lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut
+                                                                                        if (qr) {
+                                                                                                    console.log("QR aggiornato! Vai su /qr per vederlo.")
+
+                                                                                                                qrcode.generate(qr, { small: true }, (ascii) => {
+                                                                                                                                lastQR = ascii
+                                                                                                                                            })
+                                                                                                                                                    }
+
+                                                                                                                                                            if (connection === "close") {
+                                                                                                                                                                        const statusCode = lastDisconnect?.error?.statusCode
+                                                                                                                                                                                    const shouldReconnect = statusCode !== DisconnectReason.loggedOut
 
                                                                                                                                                                                                 if (shouldReconnect) {
                                                                                                                                                                                                                 console.log("Connessione chiusa, riconnessione...")
