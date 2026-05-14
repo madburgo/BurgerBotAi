@@ -32,8 +32,8 @@ import makeWASocket, {
 
                                 const sock = makeWASocket({
                                         auth: state,
-                                                printQRInTerminal: false,
-                                                        browser: ["Chrome (Linux)", "Chrome", "1.0"]
+                                                printQRInTerminal: true,
+                                                        browser: ["Ububtu", "Chrome (Linux)", "Chrome", "2.0.0"]
                                                             })
 
                                                                 sock.ev.on("creds.update", saveCreds)
